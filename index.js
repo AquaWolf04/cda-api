@@ -5,7 +5,7 @@ const app = express();
 const port = 3000; // Választhatod más portot is, ha a 3000 foglalt
 
 // Az "/:id" útvonalparaméter lekérdezése
-app.get("/video/:id", async (req, res) => {
+app.get("/api/:id", async (req, res) => {
   try {
     const videoApi = await CdaVideoApi.fromID(req.params.id); // A kért videó API-jának lekérdezése az ID alapján
 
@@ -15,7 +15,7 @@ app.get("/video/:id", async (req, res) => {
     for (const quality of qualities.values()) {
       const url = await videoApi.getDirectVideoLink(quality);
       const size = mapQualityToSize(quality);
-      videoURLs.push({ src: url, size });
+      videoURLs.push({ src: url, quality: size });
     }
 
     // JSON válasz küldése az elérhető minőségekkel és direkt URL-ekkel
