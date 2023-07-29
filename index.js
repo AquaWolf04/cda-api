@@ -22,7 +22,7 @@ app.get("/api/:id", async (req, res) => {
     res.json(videoURLs);
   } catch (error) {
     // Hibakezelés, ha az API vagy a videó nem található
-    res.status(404).json({ error: "A videó nem található." });
+    res.status(404).json({ error: "Video not found" });
   }
 });
 
